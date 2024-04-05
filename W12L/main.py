@@ -65,6 +65,8 @@ class Paddle:
 class Ball:
     def __init__(self, x, y):
         self.reset(x, y)
+        self.max_ball_rad = 18
+        self.min_ball_rad = 5
 
     def move(self):
         if self.rect.top < margin:
@@ -86,7 +88,8 @@ class Ball:
         return self.winner
 
     def draw(self):
-        pygame.draw.circle(screen, white, (self.rect.x + self.ball_rad, self.rect.y + self.ball_rad), self.ball_rad)
+        current_ball_rad = self.max_ball_rad - abs(self.speed_x) // 2
+        pygame.draw.circle(screen, white, (self.rect.x + current_ball_rad, self.rect.y + current_ball_rad), current_ball_rad)
 
     def reset(self, x, y):
         self.x = x
