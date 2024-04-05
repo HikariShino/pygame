@@ -23,6 +23,8 @@ speed_increase = 0
 
 bg = (248, 230, 157)
 white = (255, 255, 255)
+green = (125, 218, 88)
+red = (210, 1, 3)
 
 
 def draw_board():
@@ -36,7 +38,8 @@ def draw_text(text, font, text_color, x, y):
 
 
 class Paddle:
-    def __init__(self, x, y):
+    def __init__(self, x, y, color):
+        self.color = color
         self.x = x
         self.y = y
         self.rect = Rect(self.x, self.y, 20, 100)
@@ -56,7 +59,7 @@ class Paddle:
             self.rect.move_ip(0, -1 * self.speed)
 
     def draw(self):
-        pygame.draw.rect(screen, white, self.rect)
+        pygame.draw.rect(screen, self.color, self.rect)
 
 
 class Ball:
@@ -95,8 +98,8 @@ class Ball:
         self.winner = 0
 
 
-player_paddle = Paddle(screen_width - 40, screen_height // 2)
-cpu_paddle = Paddle(20, screen_height // 2)
+player_paddle = Paddle(screen_width - 40, screen_height // 2, green)
+cpu_paddle = Paddle(20, screen_height // 2, red)
 
 pong = Ball(screen_width - 60, screen_height // 2)
 
