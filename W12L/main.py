@@ -25,6 +25,7 @@ bg = (248, 230, 157)
 white = (255, 255, 255)
 green = (125, 218, 88)
 red = (210, 1, 3)
+blue = (39, 31, 235)
 
 
 def draw_board():
@@ -63,7 +64,8 @@ class Paddle:
 
 
 class Ball:
-    def __init__(self, x, y):
+    def __init__(self, x, y, color):
+        self.color = color
         self.reset(x, y)
         self.max_ball_rad = 18
         self.min_ball_rad = 5
@@ -89,7 +91,7 @@ class Ball:
 
     def draw(self):
         current_ball_rad = self.max_ball_rad - abs(self.speed_x) // 2
-        pygame.draw.circle(screen, white, (self.rect.x + current_ball_rad, self.rect.y + current_ball_rad), current_ball_rad)
+        pygame.draw.circle(screen, self.color, (self.rect.x + current_ball_rad, self.rect.y + current_ball_rad), current_ball_rad)
 
     def reset(self, x, y):
         self.x = x
@@ -104,7 +106,7 @@ class Ball:
 player_paddle = Paddle(screen_width - 40, screen_height // 2, green)
 cpu_paddle = Paddle(20, screen_height // 2, red)
 
-pong = Ball(screen_width - 60, screen_height // 2)
+pong = Ball(screen_width - 60, screen_height // 2, blue)
 
 run = True
 while run:
